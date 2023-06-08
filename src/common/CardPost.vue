@@ -3,6 +3,7 @@
 defineProps<{
 	dataPost: IDataPost[]
 	onDelete: ( id: number ) => void
+	onEdit: ( id: number ) => void
 }>()
 
 </script>
@@ -18,7 +19,10 @@ defineProps<{
 					<h5 class="card-title"> {{ item.title }}</h5>
 					<p class="card-text">{{ item.body }}</p>
 				</div>
-				<button type="button" class="btn btn-dark" @click.stop="onDelete( item.id )">Delete</button>
+				<div class="d-flex gap-3">
+					<button type="button" class="btn btn-dark" @click.stop="onDelete( item.id )">Delete</button>
+					<button type="button" class="btn btn-pink " @click.stop="onEdit( item.id )">Edit</button>
+				</div>
 			</div>
 		</div>
 	</div>

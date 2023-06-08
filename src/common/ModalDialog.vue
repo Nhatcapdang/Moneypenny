@@ -30,27 +30,31 @@
 </template>
 
 <script setup lang="ts">
+import { useBlogStore } from '@/stores/blogdata';
 import { useToastStore } from '@/stores/counter';
-import { Axios } from '@/utils';
 import { ref } from 'vue'
 
 const toastStore = useToastStore()
+const blogStore = useBlogStore()
+
 const formBlog = ref( {
 	title: '',
 	body: ''
 } )
 const onSubmit = () => {
-	Axios.post( '/posts', formBlog.value ).then( ( response ) => {
+	blogStore.onAdd( formBlog.value ).then( ( res ) => {
+		console.log( res );
 		formBlog.value = {
 			title: '',
 			body: ''
 		}
 		toastStore.onShowToast( {
 			title: 'Add success',
-			message: `Add post with id: ${response.data.id} success`,
+			message: `Add post with id: ${res.id} success`,
 			isShow: true,
 		} )
 	} )
+
 }
 </script>
 
