@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, inject } from 'vue'
 import { onMounted } from 'vue'
-import axios, { type AxiosResponse } from 'axios';
-import CardPost from '@/components/CardPost.vue';
+// import { type AxiosResponse } from 'axios';
+import { Axios } from '@/utils';
+import CardPost from '@/common/CardPost.vue';
 
 type IDataPost = {
 	body: string
@@ -10,23 +11,22 @@ type IDataPost = {
 	title: string
 	userId: string
 }
-const Axios = axios.create( {
-	baseURL: 'https://jsonplaceholder.typicode.com'
-} )
-const props = defineProps( {
-	msg: {
-		type: String,
-		default: 'Hello World'
-	}
-} )
+
+// const props = defineProps( {
+// 	msg: {
+// 		type: String,
+// 		default: 'Hello World'
+// 	}
+// } )
 const dataPost = ref<IDataPost[]>( [] )
 const dataPostFilter = ref<IDataPost[] | null>( null )
 const txtSearch = ref<string>( '' )
+
 onMounted( () => {
 	getDataPost()
 } )
 
-watch( txtSearch, async ( newTxtSearch, oldTxtSearch ) => {
+watch( txtSearch, async ( newTxtSearch, _oldTxtSearch ) => {
 	const newdataPost = dataPost.value.filter( ( item ) => {
 		return item.title.includes( newTxtSearch ) || item.body.includes( newTxtSearch ) || item.id == parseInt( newTxtSearch )
 	} )

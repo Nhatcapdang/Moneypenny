@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 type IDataPost = {
 	body: string
 	id: number
@@ -13,7 +14,7 @@ defineProps<{
 </script>
 <template >
 	<div v-if="dataPost.length > 0">
-		<div class="card d-flex" v-for="(   item   ) in    dataPost   " :key="item.id">
+		<div class="card d-flex" v-for="item in dataPost" :key="item.id" @click="$router.push( `/blog/${item.id}` )">
 			<div>
 				<img src="https://picsum.photos/200/200">
 			</div>
@@ -23,7 +24,7 @@ defineProps<{
 					<h5 class="card-title"> {{ item.title }}</h5>
 					<p class="card-text">{{ item.body }}</p>
 				</div>
-				<button type="button" class="btn btn-dark" @click="onDelete( item.id )">Delete</button>
+				<button type="button" class="btn btn-dark" @click.stop="onDelete( item.id )">Delete</button>
 			</div>
 		</div>
 	</div>
@@ -37,6 +38,7 @@ defineProps<{
 	max-width: 80%;
 	overflow: hidden;
 	margin: 25px auto;
+	cursor: pointer;
 
 	img {
 		padding: 10px;

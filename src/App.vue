@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import ToastPlacement from './common/ToastPlacement.vue';
+
 </script>
 
 <template>
@@ -12,12 +14,13 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/about">About</RouterLink>
       </li>
       <li>
-        <RouterLink to="/test">Test</RouterLink>
+        <RouterLink to="/blog">Test</RouterLink>
       </li>
     </ul>
   </header>
 
   <RouterView />
+  <ToastPlacement />
 </template>
 
 <style lang="scss">
