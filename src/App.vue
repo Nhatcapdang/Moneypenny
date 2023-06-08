@@ -14,7 +14,7 @@ import ToastPlacement from './common/ToastPlacement.vue';
         <RouterLink to="/about">About</RouterLink>
       </li>
       <li>
-        <RouterLink to="/blog">Test</RouterLink>
+        <RouterLink to="/blog">Blog</RouterLink>
       </li>
     </ul>
   </header>

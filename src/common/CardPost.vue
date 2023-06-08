@@ -1,11 +1,5 @@
 <script setup lang="ts">
 
-type IDataPost = {
-	body: string
-	id: number
-	title: string
-	userId: string
-}
 defineProps<{
 	dataPost: IDataPost[]
 	onDelete: ( id: number ) => void
